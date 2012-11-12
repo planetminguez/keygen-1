@@ -1,4 +1,4 @@
 keygen
-======
+=============
 
-creates a random key with custom settings
+Python script that creates keys with customer settings
