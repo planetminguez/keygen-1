@@ -16,7 +16,7 @@ except:
 class keygen(object):
 
 	def __init__(self):
-		self.letters = list('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') # you can add some letters, but leave A-Z and a-z there!
+		self.letters = list('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') # you can add some letters or remove the diggits, but leave A-Z and a-z there!
 		self.letterslength = len(self.letters)
 		self.tmpkey = self.letters[randint(0, 52)]
 		
@@ -30,10 +30,8 @@ class keygen(object):
 			keys.create_tmpkey(key_info.length)
 	
 			print keys.tmpkey
-	
-			if filename:
-				keys.tmpkey = '%s\n' % keys.tmpkey
-				ex_file.dataset.write(keys.tmpkey)
+
+			ex_file.write_key(keys.tmpkey)
 	
 		ex_file.close_file()
 
@@ -73,8 +71,13 @@ class external_file(keygen):
 			self.dataset = open(filename, 'w')
 
 	def close_file(self):
-		if filename is not False:
+		if filename != False:
 			self.dataset.close()
+
+	def write_key(self, key):
+		if filename:
+			self.dataset.write('%s\n' % key)
+
 
 def main():
 	keygen().create_keys()
