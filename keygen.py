@@ -27,7 +27,7 @@ class keygen(object):
 		for i in xrange(0, key_info.amount):
 			
 			keys = keygen() # first character already initialized with a letter
-			keys.create_tmpkey(key_info.length)
+			keys.create_single_key(key_info.length)
 	
 			print keys.tmpkey
 
@@ -35,10 +35,11 @@ class keygen(object):
 	
 		ex_file.close_file()
 
-	def create_tmpkey(self, length_of_a_key):
+	def create_single_key(self, length_of_a_key):
 		# creating a temporary key
 		for i in xrange(0, length_of_a_key - 1):
 			self.tmpkey = '%s%s' % (self.tmpkey, self.letters[randint(0, self.letterslength-1)])
+		return self.tmpkey
 
 class keygen_information(keygen):
 
